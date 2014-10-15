@@ -1,0 +1,74 @@
+.m_gantt {
+	position: relative;
+	background-color: white;
+}
+.m_gantt table {
+	border-collapse: collapse;
+}
+.m_gantt-col-labels {
+	float: left;
+	width: 200px;
+	height: 100%;
+}
+.m_gantt-col-center {
+	float: left;
+	height: 100%;
+	overflow: auto;
+}
+.m_gantt-col-sums {
+	float: left;
+	width: 150px;
+	height: 100%;
+}
+.m_gantt-grid {
+	background-image: url(m_gantt-bg.gif);
+	position: relative;
+}
+.m_gantt-grid-header table {
+	table-layout: fixed;
+	width: 100%;
+}
+.m_gantt-grid-header td {
+	font-size: 11px;
+	text-align: center;
+	padding: 2px 0;
+}
+.m_gantt-grid-header-dayofweek {
+	background-color: #eee;
+}
+.m_gantt-grid-header-day {
+	background-color: #ccc;
+}
+.m_gantt-grid-header-month {
+	background-color: #aaa;
+}
+.m_gantt-grid-header .m_gantt-grid-header-month td {
+	border-right: 1px solid #ccc;
+}
+.m_gantt-bar {
+	height: 28px;
+	position: absolute;
+	text-align: center;
+	background-color: #5bc0de;
+	cursor: move;
+	z-index: 2;
+}
+.m_gantt-link {
+	height: 50px;
+	position: absolute;
+	z-index: 1;
+}
+.m_gantt-resize {
+	position: absolute;
+	width: 6px;
+	height: 100%;
+	background-color: red;
+	right: 0;
+	cursor: e-resize;
+}
+
+
+
+
+
+

@@ -1,6 +1,8 @@
 
 lib
 
+bower_components
+
 # Logs
 logs
 *.log
@@ -29,3 +31,4 @@ node_modules
 
 # Users Environment Variables
 .lock-wscript
+

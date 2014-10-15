@@ -24,64 +24,95 @@
 		</style>
 		<script type="text/javascript">
 
+var values1 = [
+	{
+		id: 'MA1',
+		text: "Première tâche (can't be drag)",
+		textBar: "Texte première tâche",
+		start: moment().add(2, 'days').startOf('day'),
+		end: moment().add(7, 'days').startOf('day'),
+		cls: '',
+		nbUnitsToBeMade: 30,
+		nbUnitsMade: 10,
+		// links: 'MA2',
+		data: {cool:"ok"}
+	}, {
+		id: 'MA2',
+		text: "Sous-tâche 1",
+		click: function() {
+			console.log("c'est un click") ;
+		},
+		parent: 'MA1',
+		textBar: "Texte deuxième tâche",
+		start: moment().add(2, 'days').startOf('day'),
+		end: moment().add(8, 'days').startOf('day')
+	}, {
+		id: 'MA3',
+		text: "Sous-tâche 2",
+		parent: 'MA1',
+		textBar: "Texte deuxième tâche",
+		start: moment().add(5, 'days').startOf('day'),
+		end: moment().add(15, 'days').startOf('day'),
+		nbUnitsToBeMade: 20,
+		nbUnitsMade: 16,
+	}, {
+		id: 'MA4',
+		text: "Deuxième tâche",
+		// parent: 'MA3',
+		textBar: "Texte deuxième tâche",
+		start: moment().add(9, 'days').startOf('day'),
+		end: moment().add(20, 'days').startOf('day')
+	}
+] ;
+
+var values2 = [
+	{
+		id: 'MA1',
+		text: "Première tâche",
+		textBar: "Texte première tâche",
+		start: moment().add(2, 'days').startOf('day'),
+		end: moment().add(7, 'days').startOf('day'),
+		bgColor: '#428bca',
+		cls: '',
+		links: 'MA2',
+		data: {cool:"ok"}
+	}, {
+		id: 'MA2',
+		text: "Deuxième tâche",
+		textBar: "Texte deuxième tâche",
+		start: moment().add(9, 'days').startOf('day'),
+		end: moment().add(20, 'days').startOf('day')
+	}
+] ;
+
 $(document).ready(function() {
 	$("#gantt1").m_gantt({
+		start: moment().startOf('day'), // you can set integer -3 to indicate -3 days before first task
+		end: moment().add(3, 'months').startOf('day'),  // you can set integer 7 to indicate 7 days after last task
+		thresholdWarning: 80, // in purcent
 		height: 200,
-		values: [
-			{
-				id: 'MA1',
-				text: "Première tâche",
-				textBar: "Texte première tâche",
-				start: moment().add(2, 'days'),
-				end: moment().add(7, 'days'),
-				bgColor: '#428bca',
-				cls: '',
-				links: 'MA2',
-				data: {cool:"ok"}
-			}, {
-				id: 'MA2',
-				text: "Deuxième tâche",
-				textBar: "Texte deuxième tâche",
-				start: moment().add(9, 'days'),
-				end: moment().add(20, 'days')
-			}
-		]				
+		clickTask: function() {
+			alert("Task clicked") ;
+		},
+		values: values1			
 	}) ;
 	$("#gantt2").m_gantt({
 		height: 200,
 		labelsWidth: 200,
-		values: [
-			{
-				id: 'MA1',
-				text: "Première tâche",
-				textBar: "Texte première tâche",
-				start: moment().add(2, 'days'),
-				end: moment().add(7, 'days'),
-				bgColor: '#428bca',
-				cls: '',
-				links: 'MA2',
-				data: {cool:"ok"}
-			}, {
-				id: 'MA2',
-				text: "Deuxième tâche",
-				textBar: "Texte deuxième tâche",
-				start: moment().add(9, 'days'),
-				end: moment().add(20, 'days')
-			}
-		]				
+		values: values2			
 	}) ;
 }) ;
-var numTask = 3 ;
+
+var numTask = values1.length ;
 function addTask() {
 	$("#gantt1").m_gantt('addTask', {
 		id: 'MA'+numTask,
 		text: "Tâche "+numTask,
 		textBar: "Texte tâche",
-		start: moment().add(2, 'days'),
-		end: moment().add(7, 'days'),
+		start: moment().add(2, 'days').startOf('day'),
+		end: moment().add(7, 'days').startOf('day'),
 		bgColor: '#428bca',
 		cls: '',
-		links: 'MA2',
 		data: {cool:"ok"}		
 	});
 	numTask++ ;
@@ -89,7 +120,7 @@ function addTask() {
 function removeTask() {
 	numTask-- ;
 	var idToRemove = 'MA'+numTask ;
-	log("idToRemove",idToRemove)
+	// log("idToRemove",idToRemove)
 	$("#gantt1").m_gantt('removeTask', idToRemove) ;
 }
 		</script>

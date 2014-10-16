@@ -1,0 +1,128 @@
+.m_gantt {
+	position: relative;
+	background-color: white;
+}
+.m_gantt table {
+	border-collapse: collapse;
+}
+.m_gantt-col-labels {
+	float: left;
+	width: 200px;
+	height: 100%;
+}
+.m_gantt-col-center {
+	float: left;
+	height: 100%;
+	overflow: auto;
+}
+.m_gantt-col-sums {
+	float: left;
+	width: 150px;
+	height: 100%;
+}
+.m_gantt-grid {
+	background-image: url(m_gantt-bg.gif);
+	position: relative;
+}
+.m_gantt-grid-header table {
+	table-layout: fixed;
+	width: 100%;
+}
+.m_gantt-grid-header td {
+	font-size: 11px;
+	text-align: center;
+	padding: 2px 0;
+}
+.m_gantt-grid-header-dayofweek {
+	background-color: #eee;
+}
+.m_gantt-grid-header-day {
+	background-color: #ccc;
+}
+.m_gantt-grid-header-month {
+	background-color: #aaa;
+}
+.m_gantt-grid-header .m_gantt-grid-header-month td {
+	border-right: 1px solid #ccc;
+}
+.m_gantt-task {
+	height: 28px;
+	position: absolute;
+	text-align: center;
+	background-color: #5bc0de;
+	cursor: move;
+	z-index: 2;
+	overflow: hidden;
+	white-space: nowrap;
+}
+.m_gantt-group {
+	height: 28px;
+	position: absolute;
+	text-align: center;
+	background-color: #444;
+	color: white;
+	z-index: 2;
+	/*overflow: hidden;*/
+}
+.m_gantt-bar {
+	height: 28px;
+	position: absolute;
+	text-align: center;
+	background-color: #5bc0de;
+	cursor: move;
+	z-index: 2;
+}
+.m_gantt-link {
+	height: 50px;
+	position: absolute;
+	z-index: 1;
+}
+.m_gantt-resize {
+	position: absolute;
+	width: 6px;
+	height: 100%;
+	background-color: red;
+	right: 0;
+	top: 0;
+	cursor: e-resize;
+}
+.m_gantt-advance {
+	position: absolute;
+	width: 100%;
+	height: 5px;
+	background-color: green;
+	left: 0;
+	top: 15px;
+	cursor: e-resize;
+}
+.m_gantt-advance.warning {
+	background-color: orange;
+}
+.m_gantt-advance.danger {
+	background-color: red;
+}
+.m_gantt-arrow-left {
+	position: absolute;
+	top: 5px;
+	left: -20px;
+	width: 0; 
+	height: 0; 
+	border-left: 20px solid transparent;
+	border-right: 20px solid transparent;
+	border-top: 20px solid #000;	
+}
+.m_gantt-arrow-right {
+	position: absolute;
+	top: 5px;
+	right: -20px;
+	width: 0; 
+	height: 0; 
+	border-left: 20px solid transparent;
+	border-right: 20px solid transparent;
+	border-top: 20px solid #000;	
+}
+
+
+
+
+

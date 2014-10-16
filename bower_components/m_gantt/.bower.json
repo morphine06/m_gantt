@@ -1,0 +1,38 @@
+{
+  "name": "m_gantt",
+  "homepage": "https://github.com/morphine06/m_gantt",
+  "authors": [
+    "morphine06 <david@miglior.fr>"
+  ],
+  "description": "jQuery Gantt with drag'n'drop tasks and resize.",
+  "main": "dist/m_gantt.js",
+  "moduleType": [
+    "amd"
+  ],
+  "keywords": [
+    "jQuery",
+    "Gantt"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.1",
+    "moment": "~2.8.3"
+  },
+  "_release": "b700557af2",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "b700557af2afaefe48491db839dc1a6b572d1456"
+  },
+  "_source": "git://github.com/morphine06/m_gantt.git",
+  "_target": "*",
+  "_originalSource": "m_gantt",
+  "_direct": true
+}

@@ -2,8 +2,24 @@
 	position: relative;
 	background-color: white;
 }
+.m_gantt-clear {
+	clear: both;
+}
+.m_gantt-scrollspace {
+	height: 30px;
+	width: 30px;
+}
+.m_gantt-ressources-header {
+	font-weight: bold;
+	font-size: 14px;
+}
 .m_gantt table {
 	border-collapse: collapse;
+}
+.m_gantt-relative {
+	position: relative;
+	width: 100%;
+	height: 0;
 }
 .m_gantt-col-labels {
 	float: left;
@@ -17,12 +33,16 @@
 }
 .m_gantt-col-sums {
 	float: left;
-	width: 150px;
+	width: 0;
 	height: 100%;
 }
 .m_gantt-grid {
 	background-image: url(m_gantt-bg.gif);
 	position: relative;
+}
+.m_gantt-ressources {
+	background-image: url(m_gantt-bg.gif);
+	position: relative;	
 }
 .m_gantt-grid-header table {
 	table-layout: fixed;
@@ -46,26 +66,22 @@
 	border-right: 1px solid #ccc;
 }
 .m_gantt-task {
-	height: 28px;
+	height: 20px;
 	position: absolute;
-	text-align: center;
+	/*text-align: center;*/
 	background-color: #5bc0de;
 	cursor: move;
 	z-index: 2;
-	overflow: hidden;
+	/*overflow: hidden;*/
 	white-space: nowrap;
 }
-.m_gantt-group {
-	height: 28px;
+.m_gantt-text {
 	position: absolute;
-	text-align: center;
-	background-color: #444;
-	color: white;
-	z-index: 2;
-	/*overflow: hidden;*/
+	left: calc(100% + 20px);
+	white-space: nowrap;
 }
 .m_gantt-bar {
-	height: 28px;
+	height: 20px;
 	position: absolute;
 	text-align: center;
 	background-color: #5bc0de;
@@ -81,7 +97,7 @@
 	position: absolute;
 	width: 6px;
 	height: 100%;
-	background-color: red;
+	background-color: #469EB8;
 	right: 0;
 	top: 0;
 	cursor: e-resize;
@@ -90,7 +106,7 @@
 	position: absolute;
 	width: 100%;
 	height: 5px;
-	background-color: green;
+	background-color: #5cb85c;
 	left: 0;
 	top: 15px;
 	cursor: e-resize;
@@ -99,30 +115,67 @@
 	background-color: orange;
 }
 .m_gantt-advance.danger {
-	background-color: red;
+	background-color: #d9534f;
 }
-.m_gantt-arrow-left {
+.m_gantt-project {
+	height: 10px;
 	position: absolute;
-	top: 5px;
-	left: -20px;
+	/*text-align: center;*/
+	background-color: rgba(85, 85, 85, 0.6);
+	/*color: white;*/
+	z-index: 2;
+	/*overflow: hidden;*/
+}
+.m_gantt-group {
+	height: 10px;
+	position: absolute;
+	/*text-align: center;*/
+	background-color: rgba(66, 139, 202, 0.6);
+	/*color: white;*/
+	z-index: 2;
+	/*overflow: hidden;*/
+}
+.m_gantt-group-arrow-left {
+	position: absolute;
+	top: 10px;
+	left: 0px;
 	width: 0; 
 	height: 0; 
-	border-left: 20px solid transparent;
-	border-right: 20px solid transparent;
-	border-top: 20px solid #000;	
+	border-left: 10px solid transparent;
+	border-right: 10px solid transparent;
+	border-top: 10px solid rgba(66, 139, 202, 0.6);	
 }
-.m_gantt-arrow-right {
+.m_gantt-group-arrow-right {
 	position: absolute;
-	top: 5px;
-	right: -20px;
+	top: 10px;
+	right: 0px;
 	width: 0; 
 	height: 0; 
-	border-left: 20px solid transparent;
-	border-right: 20px solid transparent;
-	border-top: 20px solid #000;	
+	border-left: 10px solid transparent;
+	border-right: 10px solid transparent;
+	border-top: 10px solid rgba(66, 139, 202, 0.6);	
+}
+.m_gantt-project .m_gantt-group-arrow-left {
+	border-top-color: rgba(85, 85, 85, 0.6);
+}
+.m_gantt-project .m_gantt-group-arrow-right {
+	border-top-color: rgba(85, 85, 85, 0.6);
 }
 
+.m_gantt-ressource-name {
+	position: absolute;
+	z-index: 2;
+	background-color: rgba(255,255,255,0.5);
+	right: 10px;
+	padding: 3px 10px;
+}
 
-
-
-
+.m_gantt-work {
+	position: absolute;
+	background-color: #5cb85c;
+	width: 32px;
+	height: 32px;
+}
+.m_gantt-work.danger {
+	background-color: #d9534f;
+}

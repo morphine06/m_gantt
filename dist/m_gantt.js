@@ -4,7 +4,7 @@
  * (c) 2014 David Miglior (3doubleV)
  */
 
-
+"use strict";
 
 (function(factory) {
 	if (typeof define === 'function' && define.amd) {
@@ -15,7 +15,7 @@
 	}
 })(function($, moment) {
 
-;;
+
 
 var defaults = {
 	lang: 'en',
@@ -119,7 +119,7 @@ function m_gantt(element, instanceOptions) {
 
 	// function getMinMaxParent(i1, min1, max1) {
 	// 	var i1, j1 ;
-	// 	if (tasks[i1].parent && tasks[i1].parent!='') {
+	// 	if (tasks[i1].parent && tasks[i1].parent!=='') {
 	// 		for(j1=0 ; j1<tasks.length ; j1++) {
 	// 			if (tasks[j1].id==tasks[i1].parent) {
 	// 				if (!tasks[j1].start) {
@@ -136,7 +136,7 @@ function m_gantt(element, instanceOptions) {
 	// 		}
 	// 	}
 
-	// 	// if (tasks[i1].parent && tasks[i1].parent!='') {
+	// 	// if (tasks[i1].parent && tasks[i1].parent!=='') {
 	// 	// 	for(j1=0 ; j1<tasks.length ; j1++) {
 	// 	// 		if (tasks[j1].id==tasks[i1].parent) {
 	// 	// 			if (!tasks[j1].start) {
@@ -177,16 +177,16 @@ function m_gantt(element, instanceOptions) {
 			tasks[i].end = (moment.isMoment(tasks[i].end))?tasks[i].end:moment(tasks[i].end) ;
 			tasks[i].diff = tasks[i].end.diff(tasks[i].start, 'days') ;
 			tasks[i].nbWorkedDays = 0 ;
-			var currentDate = moment(tasks[i].start) ;
-			while(currentDate.isBefore(tasks[i].end)) {
-				if (opts.daysWorked[currentDate.day()]) tasks[i].nbWorkedDays++ ;
-				currentDate.add(1, 'days') ;
+			var currentDate1 = moment(tasks[i].start) ;
+			while(currentDate1.isBefore(tasks[i].end)) {
+				if (opts.daysWorked[currentDate1.day()]) tasks[i].nbWorkedDays++ ;
+				currentDate1.add(1, 'days') ;
 			}
 			// log(tasks[i].nbWorkedDays)
 			// log("tasks[i].diff",tasks[i].diff)
 		}
 		for(i=0 ; i<tasks.length ; i++) {
-			if (tasks[i].parent && tasks[i].parent!='') {
+			if (tasks[i].parent && tasks[i].parent!=='') {
 				// getMinMaxParent(i) ;
 				for(j=0 ; j<tasks.length ; j++) {
 					if (tasks[j].id==tasks[i].parent) {
@@ -228,13 +228,13 @@ function m_gantt(element, instanceOptions) {
 				for(j=0 ; j<tasks[i].assign.length ; j++) {
 					for (k=0 ; k<ressources.length ; k++) {
 						if (tasks[i].assign[j][0]==ressources[k].id) {
-							var currentDate = moment(tasks[i].start) ;
-							while(currentDate.isBefore(tasks[i].end)) {
-								if (ressources[k].daysWorked[currentDate.day()] && !tasks[i].hasChilds) {
-									if (!ressources[k].work[currentDate.format('YYYY-MM-DD')]) ressources[k].work[currentDate.format('YYYY-MM-DD')] = 0 ;
-									ressources[k].work[currentDate.format('YYYY-MM-DD')] += tasks[i].assign[j][1] ;
+							var currentDate2 = moment(tasks[i].start) ;
+							while(currentDate2.isBefore(tasks[i].end)) {
+								if (ressources[k].daysWorked[currentDate2.day()] && !tasks[i].hasChilds) {
+									if (!ressources[k].work[currentDate2.format('YYYY-MM-DD')]) ressources[k].work[currentDate2.format('YYYY-MM-DD')] = 0 ;
+									ressources[k].work[currentDate2.format('YYYY-MM-DD')] += tasks[i].assign[j][1] ;
 								}
-								currentDate.add(1, 'days') ;
+								currentDate2.add(1, 'days') ;
 							}
 						}
 					}
@@ -259,7 +259,21 @@ function m_gantt(element, instanceOptions) {
 
 	// the first render, create all main divs
 	function firstRender() {
-		mainDiv = $("<div class='m_gantt'><div class='m_gantt-relative'></div><div class='m_gantt-col-labels'></div><div class='m_gantt-col-center'><div class='m_gantt-grid-header'></div><div class='m_gantt-grid'></div><div class='m_gantt-ressources-header'></div><div class='m_gantt-ressources'></div><div class='m_gantt-scrollspace'></div></div><div class='m_gantt-col-sums'></div><div class='m_gantt-clear'></div></div>") ;
+		mainDiv = $(""+
+			"<div class='m_gantt'>"+
+				"<div class='m_gantt-relative'></div>"+
+				"<div class='m_gantt-col-labels'></div>" +
+				"<div class='m_gantt-col-center'>"+
+					"<div class='m_gantt-grid-header'></div>"+
+					"<div class='m_gantt-grid'></div>"+
+					"<div class='m_gantt-ressources-header'></div>"+
+					"<div class='m_gantt-ressources'></div>"+
+					"<div class='m_gantt-scrollspace'></div>"+
+				"</div>"+
+				"<div class='m_gantt-col-sums'></div>"+
+				"<div class='m_gantt-clear'></div>"+
+			"</div>"
+		) ;
 		element.append(mainDiv) ;
 		// and set rendered = true
 		rendered = true ;
@@ -282,7 +296,7 @@ function m_gantt(element, instanceOptions) {
 		if (opts.height && opts.height!='auto' && opts.height>0) h = opts.height ;
 		else if (opts.aspectRatio>0) h = mainDiv.width()*opts.aspectRatio ;
 		if (h>0) mainDiv.height(h) ;
-		if (opts.textRessources!='') mainDiv.find('.m_gantt-ressources-header').html(opts.textRessources) ;
+		if (opts.textRessources!=='') mainDiv.find('.m_gantt-ressources-header').html(opts.textRessources) ;
 		mainDiv.find('.m_gantt-col-labels').width(opts.labelsWidth) ;
 		mainDiv.find('.m_gantt-col-center').width(mainDiv.width() - (mainDiv.find('.m_gantt-col-labels').width() + mainDiv.find('.m_gantt-col-sums').width())) ;
 
@@ -321,10 +335,10 @@ function m_gantt(element, instanceOptions) {
 		var previousProjectId = "__1__" ;
 		for(var i=0 ; i<tasks.length ; i++) {
 			var task = tasks[i] ;
-			if (opts.project!='' && task.project!=opts.project) continue ;
+			if (opts.project!=='' && task.project!=opts.project) continue ;
 
 
-			if (opts.project=='' && task.project!=previousProjectId) {
+			if (opts.project==='' && task.project!=previousProjectId) {
 				var project = projects[task._projectIndex] ;
 				var projectjEl = $("<div class='m_gantt-project'><div class='m_gantt-text'>"+project.name+"</div></div>") ;
 				projectjEl.append($("<div class='m_gantt-group-arrow-left'></div>")) ;
@@ -335,10 +349,10 @@ function m_gantt(element, instanceOptions) {
 				var diffP2 = moment(project.start).startOf('day').diff(start, 'days') ;
 				gridjEl.append(projectjEl) ;
 				// projectjEl ; //.height(grid.barHeight) ;
-				var wArrow = parseInt(projectjEl.find('.m_gantt-group-arrow-left').css('border-left-width'),10) ;
+				var wArrow1 = parseInt(projectjEl.find('.m_gantt-group-arrow-left').css('border-left-width'),10) ;
 				projectjEl.css('top', nbBars*grid.height+((grid.height-grid.barHeight)/2))
-				          .css('left', grid.width*diffP2-wArrow)
-				          .width(grid.width*diffP1+wArrow*2) ;
+				          .css('left', grid.width*diffP2-wArrow1)
+				          .width(grid.width*diffP1+wArrow1*2) ;
 				nbBars++ ;
 			}
 			previousProjectId = task.project ;
@@ -375,8 +389,8 @@ function m_gantt(element, instanceOptions) {
 			   .css('left', grid.width*diff2)
 			   .width(grid.width*diff1) ;
 			if (task.hasChilds) {
-				var wArrow = parseInt(bar.find('.m_gantt-group-arrow-left').css('border-left-width'),10) ;
-				bar.width(grid.width*diff1+(wArrow*2)).css('left', grid.width*diff2-wArrow) ;
+				var wArrow2 = parseInt(bar.find('.m_gantt-group-arrow-left').css('border-left-width'),10) ;
+				bar.width(grid.width*diff1+(wArrow2*2)).css('left', grid.width*diff2-wArrow2) ;
 				// log("has")
 			}
 			if (task.bgColor) bar.css('background-color', task.bgColor) ;
@@ -460,7 +474,7 @@ function m_gantt(element, instanceOptions) {
 	}
 	function getParents(i2, res) {
 		if (!res) res = [] ;
-		if (tasks[i2].parent && tasks[i2].parent!='') {
+		if (tasks[i2].parent && tasks[i2].parent!=='') {
 			var ind = getIndexTask(tasks[i2].parent) ;
 			res.push(ind) ;
 			if (ind>=0) {

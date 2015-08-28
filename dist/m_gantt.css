@@ -39,6 +39,7 @@
 .m_gantt-grid {
 	background-image: url(m_gantt-bg.gif);
 	position: relative;
+	overflow: hidden;
 }
 .m_gantt-ressources {
 	background-image: url(m_gantt-bg.gif);
